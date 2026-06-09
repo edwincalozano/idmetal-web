@@ -1,0 +1,57 @@
+---
+const groups = [
+  {
+    title: 'Obras de Saneamiento e Infraestructura Básica',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+    items: ['Sistemas de saneamiento', 'Alcantarillados', 'Cunetas y canales'],
+  },
+  {
+    title: 'Obras Viales & Urbanismo',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l3-6 5 4 4-8 4 10"/><path d="M3 21h18"/></svg>`,
+    items: ['Pistas y veredas', 'Carreteras'],
+  },
+  {
+    title: 'Obras Civiles Mayores',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+    items: ['Puentes', 'Construcción de edificios y estructuras'],
+  },
+];
+---
+
+<div class="space-y-6">
+  <!-- Section image -->
+  <div class="relative h-64 overflow-hidden">
+    <img
+      src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80"
+      alt="Obra civil"
+      class="w-full h-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-idm-bg/60"></div>
+    <div class="absolute inset-0 flex items-end p-8">
+      <p class="font-inter text-idm-text-light text-base max-w-2xl leading-relaxed italic">
+        "Ejecutamos obras civiles con rigor técnico y materiales de primera calidad. Desde
+        infraestructura sanitaria básica hasta edificios y puentes, nuestro equipo garantiza
+        estructuras duraderas que cumplen con todas las normativas peruanas."
+      </p>
+    </div>
+  </div>
+
+  <!-- Service groups -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {groups.map((group) => (
+      <div class="bg-idm-surface border border-white/5 hover:border-idm-yellow/40 transition-all duration-300 hover:-translate-y-1 p-6">
+        <div class="text-idm-yellow mb-3" set:html={group.icon} />
+        <h4 class="font-rajdhani font-bold text-white text-lg mb-4 leading-tight">{group.title}</h4>
+        <ul class="space-y-2">
+          {group.items.map((item) => (
+            <li class="flex items-center gap-2 font-inter text-idm-text-muted text-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-idm-yellow flex-shrink-0" aria-hidden="true"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</div>

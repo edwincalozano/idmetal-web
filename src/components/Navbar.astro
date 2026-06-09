@@ -1,0 +1,164 @@
+---
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-18 py-3">
+      <!-- Logo -->
+      <a href="/" class="flex flex-col items-start" aria-label="IDMETAL - Inicio">
+        <span class="flex items-center">
+          <span class="font-rajdhani font-bold text-2xl text-idm-red tracking-widest">IDM</span>
+          <span class="font-rajdhani font-bold text-2xl text-idm-yellow tracking-widest">ETAL</span>
+        </span>
+        <span class="font-rajdhani text-xs tracking-[0.3em] text-idm-text-muted uppercase mt-0.5 logo-slogan hidden">
+          LO HACEMOS MEJOR
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#inicio"    class="nav-link">Inicio</a>
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#nosotros"  class="nav-link">Nosotros</a>
+        <a href="#proyectos" class="nav-link">Proyectos</a>
+        <a href="#contacto"  class="nav-link">Contacto</a>
+      </div>
+
+      <!-- CTA -->
+      <div class="hidden md:flex">
+        <a
+          href="#contacto"
+          class="bg-idm-red hover:bg-idm-red-dark text-white font-rajdhani font-semibold text-sm tracking-wider uppercase px-6 py-2.5 transition-all duration-200 hover:scale-[1.02]"
+        >
+          Solicitar Cotización
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="menu-toggle"
+        class="md:hidden p-2 text-current"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+      >
+        <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden fixed inset-0 top-[72px] bg-idm-bg/95 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-8"
+  >
+    <a href="#inicio"    class="mobile-nav-link" data-menu-close>Inicio</a>
+    <a href="#servicios" class="mobile-nav-link" data-menu-close>Servicios</a>
+    <a href="#nosotros"  class="mobile-nav-link" data-menu-close>Nosotros</a>
+    <a href="#proyectos" class="mobile-nav-link" data-menu-close>Proyectos</a>
+    <a href="#contacto"  class="mobile-nav-link" data-menu-close>Contacto</a>
+    <a
+      href="#contacto"
+      class="bg-idm-red text-white font-rajdhani font-semibold text-lg tracking-wider uppercase px-8 py-3 mt-4"
+      data-menu-close
+    >
+      Solicitar Cotización
+    </a>
+  </div>
+</nav>
+
+<style>
+  nav {
+    color: white;
+  }
+
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(232, 230, 225, 0.85);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover {
+    color: white;
+  }
+
+  .mobile-nav-link {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--idm-text-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--idm-red);
+  }
+
+  /* Scrolled state */
+  nav.scrolled {
+    background: rgba(15, 15, 15, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(232, 71, 63, 0.2);
+  }
+
+  nav.scrolled .logo-slogan {
+    display: block;
+  }
+
+  nav.scrolled .nav-link {
+    color: var(--idm-text-muted);
+  }
+
+  nav.scrolled .nav-link:hover {
+    color: white;
+  }
+</style>
+
+<script>
+  const navbar = document.getElementById('navbar')!;
+  const menuToggle = document.getElementById('menu-toggle')!;
+  const mobileMenu = document.getElementById('mobile-menu')!;
+  const iconOpen = document.getElementById('icon-open')!;
+  const iconClose = document.getElementById('icon-close')!;
+
+  // Scroll behavior
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // Mobile menu toggle
+  menuToggle.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+    menuToggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('[data-menu-close]').forEach((el) => {
+    el.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

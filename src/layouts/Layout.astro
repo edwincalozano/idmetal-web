@@ -1,0 +1,106 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'IDMETAL | Metalmecánica, Construcción y Topografía — Cajamarca, Perú',
+  description = 'Empresa especializada en estructuras metálicas industriales, construcción civil y topografía con LIDAR y fotogrametría. Calidad garantizada en cada proyecto. Cajamarca, Perú.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="estructuras metálicas cajamarca, topografía lidar peru, construcción civil cajamarca, galpones metálicos, metalmecánica industrial peru" />
+    <meta property="og:title" content="IDMETAL — Lo Hacemos Mejor" />
+    <meta property="og:description" content="Metalmecánica industrial, construcción y topografía especializada en Cajamarca, Perú." />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/png" href="/ico.png" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      :root {
+        --idm-red:        #E8473F;
+        --idm-red-dark:   #C93B34;
+        --idm-yellow:     #F5A623;
+        --idm-yellow-dark:#D9901F;
+        --idm-dark:       #2C2C2C;
+        --idm-gray:       #4A4A4A;
+        --idm-bg:         #0F0F0F;
+        --idm-surface:    #1A1A1A;
+        --idm-light-bg:   #F8F7F5;
+        --idm-white:      #FFFFFF;
+        --idm-text-light: #E8E6E1;
+        --idm-text-muted: #9A9490;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        color: var(--idm-dark);
+        background: #fff;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Rajdhani', sans-serif;
+      }
+
+      /* Scroll reveal utility */
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+      .reveal-delay-4 { transition-delay: 0.4s; }
+    </style>
+  </head>
+  <body>
+    <slot />
+    <script>
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

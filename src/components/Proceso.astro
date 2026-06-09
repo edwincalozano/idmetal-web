@@ -1,0 +1,89 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Consulta Inicial',
+    desc: 'Analizamos tu proyecto, necesidades y alcance sin costo. Te asesoramos en la solución más adecuada.',
+  },
+  {
+    number: '02',
+    title: 'Ingeniería & Diseño',
+    desc: 'Nuestros ingenieros elaboran planos técnicos, memorias de cálculo y especificaciones de materiales.',
+  },
+  {
+    number: '03',
+    title: 'Fabricación / Ejecución',
+    desc: 'Iniciamos la producción o ejecución en obra con materiales certificados y mano de obra calificada.',
+  },
+  {
+    number: '04',
+    title: 'Control de Calidad',
+    desc: 'Supervisión continua en cada etapa. Inspecciones de soldadura, dimensiones y acabados superficiales.',
+  },
+  {
+    number: '05',
+    title: 'Entrega y Garantía',
+    desc: 'Entregamos el proyecto en el plazo pactado con garantía escrita y soporte post-entrega.',
+  },
+];
+---
+
+<section class="bg-idm-bg py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16 reveal">
+      <span class="font-inter text-idm-red text-xs font-semibold tracking-[0.25em] uppercase">
+        Cómo trabajamos
+      </span>
+      <h2 class="font-rajdhani font-bold text-white text-4xl sm:text-5xl mt-2">
+        Nuestro <span class="text-idm-red">Proceso</span>
+      </h2>
+      <p class="font-inter text-idm-text-muted mt-4 max-w-lg mx-auto text-base">
+        Un proceso estructurado que garantiza calidad en cada etapa, desde la primera llamada hasta la entrega final.
+      </p>
+    </div>
+
+    <!-- Desktop timeline (horizontal) -->
+    <div class="hidden lg:block">
+      <div class="relative">
+        <!-- Connector line -->
+        <div class="absolute top-8 left-[10%] right-[10%] h-px bg-gradient-to-r from-idm-red via-idm-red/50 to-idm-red" aria-hidden="true"></div>
+
+        <div class="grid grid-cols-5 gap-4">
+          {steps.map((step, i) => (
+            <div class={`reveal reveal-delay-${i + 1} flex flex-col items-center text-center`}>
+              <!-- Circle -->
+              <div class="relative mb-6 z-10">
+                <div class="w-16 h-16 bg-idm-red flex items-center justify-center">
+                  <span class="font-rajdhani font-bold text-white text-xl">{step.number}</span>
+                </div>
+              </div>
+              <h3 class="font-rajdhani font-bold text-white text-lg mb-2 leading-tight">{step.title}</h3>
+              <p class="font-inter text-idm-text-muted text-sm leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile timeline (vertical) -->
+    <div class="lg:hidden space-y-0">
+      {steps.map((step, i) => (
+        <div class={`reveal reveal-delay-${Math.min(i + 1, 4)} flex gap-6`}>
+          <div class="flex flex-col items-center">
+            <div class="w-12 h-12 bg-idm-red flex items-center justify-center flex-shrink-0">
+              <span class="font-rajdhani font-bold text-white text-base">{step.number}</span>
+            </div>
+            {i < steps.length - 1 && (
+              <div class="w-px flex-1 bg-idm-red/30 my-2" aria-hidden="true"></div>
+            )}
+          </div>
+          <div class={`pb-8 ${i === steps.length - 1 ? '' : ''}`}>
+            <h3 class="font-rajdhani font-bold text-white text-xl mb-2">{step.title}</h3>
+            <p class="font-inter text-idm-text-muted text-sm leading-relaxed">{step.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

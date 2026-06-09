@@ -1,0 +1,82 @@
+---
+const testimonials = [
+  {
+    name: 'Ing. Javier Muñoz',
+    company: 'SEGENOR S.A.C.',
+    role: 'Resiente de obra',
+    text: 'Confiamos en IDMETAL para la fabricación e instalación de las cerchas metálicas destinadas a puentes de pases aéreos en el proyecto Riego Tecnificado San Antonio. Su equipo ejecutó con éxito estructuras para cruces de 80 y 60 metros que soportan tuberías de 12 y 8 pulgadas, demostrando calidad, cumplimiento y profesionalismo durante todo el proyecto.',
+  },
+  {
+    name: 'Andy Ruiz',
+    company: '',
+    role: 'Propietario del Hotel El Búnquer',
+    text: 'IDMETAL participó en la construcción del Hotel El Búnquer, un edificio de 6 pisos ubicado en la Av. Héroes del Cenepa, cuadra 1, en Cajamarca. Destacamos su compromiso con la calidad, la responsabilidad en la ejecución de los trabajos y el cumplimiento de los plazos establecidos, contribuyendo al desarrollo exitoso del proyecto.',
+  },
+  {
+    name: 'Ing. Juan Pablo Bustamante',
+    company: 'Consorcio el chotano',
+    role: 'Gerente',
+    text: 'Confiamos en el equipo para el levantamiento integral del complejo del IPD Cusco, incluyendo captura aérea con dron LiDAR y levantamiento terrestre mediante tecnología SLAM. Además del procesamiento de la información, desarrollaron el modelado BIM en Revit y el cálculo estructural para el expediente técnico de mejoras. Destacamos la precisión de los entregables, el alto nivel técnico y el cumplimiento de los objetivos del proyecto.',
+  },
+];
+
+const certifications = [
+  { label: 'RNP Certificado',             abbr: 'RNP' },
+  { label: 'OSCE Habilitado',             abbr: 'OSCE' },
+  { label: 'ISO 9001',                    abbr: 'ISO' },
+  { label: 'Colegio de Ingenieros Perú',  abbr: 'CIP' },
+];
+
+---
+
+<section class="bg-idm-light-bg py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-14 reveal">
+      <span class="font-inter text-idm-red text-xs font-semibold tracking-[0.25em] uppercase">
+        Clientes que confían
+      </span>
+      <h2 class="font-rajdhani font-bold text-idm-dark text-4xl sm:text-5xl mt-2">
+        Lo que dicen de <span class="text-idm-red">nosotros</span>
+      </h2>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      {testimonials.map((t, i) => (
+        <div class={`reveal reveal-delay-${i + 1} bg-white shadow-sm border-t-4 border-idm-red p-6 flex flex-col`}>
+          <!-- Stars -->
+          <span class="text-idm-yellow text-xl mb-4" aria-label="5 estrellas">{'★★★★★'}</span>
+
+          <!-- Quote -->
+          <p class="font-inter text-idm-gray text-sm leading-relaxed flex-1 mb-6 italic">
+            "{t.text}"
+          </p>
+
+          <!-- Author -->
+          <div class="border-t border-black/5 pt-4">
+            <p class="font-rajdhani font-bold text-idm-dark text-base">{t.name}</p>
+            <p class="font-inter text-idm-gray text-xs mt-0.5">{t.role} · {t.company}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Certifications -->
+    <div class="reveal">
+      <p class="font-inter text-center text-idm-gray text-xs uppercase tracking-widest mb-6">
+        Habilitaciones y certificaciones
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-6">
+        {certifications.map((cert) => (
+          <div class="flex flex-col items-center gap-1">
+            <div class="w-16 h-16 border-2 border-idm-dark/10 flex items-center justify-center bg-white">
+              <span class="font-rajdhani font-bold text-idm-dark text-sm tracking-widest">{cert.abbr}</span>
+            </div>
+            <span class="font-inter text-idm-gray text-xs text-center max-w-[80px] leading-tight">{cert.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+const pillars = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-6 7 6v12"/><path d="M9 20v-5h6v5"/></svg>`,
+    title: 'Diseño Técnico Certificado',
+    desc: 'Cada estructura metálica es calculada y diseñada por ingenieros certificados bajo normativas vigentes.',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
+    title: 'Material de Primera Calidad',
+    desc: 'Trabajamos exclusivamente con acero estructural y materiales certificados, sin comprometer resistencia ni durabilidad.',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    title: 'Cumplimiento de Plazos',
+    desc: 'Procesos optimizados y equipo comprometido que garantizan entregas en el tiempo acordado.',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+    title: 'Excelencia en Acabados',
+    desc: 'Procesos de soldadura, pintura y acabado que cumplen los más altos estándares de la industria.',
+  },
+];
+---
+
+<section id="nosotros" class="bg-idm-light-bg py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-14 reveal">
+      <span class="font-inter text-idm-red text-xs font-semibold tracking-[0.25em] uppercase">
+        ¿Por qué elegirnos?
+      </span>
+      <h2 class="font-rajdhani font-bold text-idm-dark text-4xl sm:text-5xl mt-2">
+        Ingeniería que habla por sí sola
+      </h2>
+      <p class="font-inter text-idm-gray mt-4 max-w-xl mx-auto text-base leading-relaxed">
+        Más de 8 años construyendo confianza en Cajamarca y la región norte del Perú.
+        <strong class="text-idm-dark font-semibold">LO HACEMOS MEJOR.</strong>
+      </p>
+    </div>
+
+    <!-- Pillars grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {pillars.map((pillar, i) => (
+        <div
+          class={`reveal reveal-delay-${i + 1} bg-white border-l-4 border-idm-red shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 p-6`}
+        >
+          <div class="text-idm-red mb-4" set:html={pillar.icon} />
+          <h3 class="font-rajdhani font-bold text-idm-dark text-xl mb-2 leading-tight">
+            {pillar.title}
+          </h3>
+          <p class="font-inter text-idm-gray text-sm leading-relaxed">
+            {pillar.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

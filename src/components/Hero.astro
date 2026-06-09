@@ -1,0 +1,127 @@
+---
+const stats = [
+  { value: '+20', label: 'Proyectos' },
+  { value: '+6',  label: 'Años de Experiencia' },
+  { value: '100%', label: 'Calidad Garantizada' },
+  { value: '3',   label: 'Especialidades' },
+];
+---
+
+<section
+  id="inicio"
+  class="relative min-h-screen flex flex-col justify-center overflow-hidden"
+>
+  <!-- Background image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/img/fondo.png"
+      alt="Estructura metálica industrial"
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-black/65"></div>
+    <!-- Diagonal transition to next section -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-24 z-10"
+      style="background: linear-gradient(to bottom right, transparent 49.5%, #0F0F0F 50%);"
+    ></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32">
+    <!-- Headline -->
+    <h1 class="font-rajdhani font-bold text-white leading-[0.9] mb-6 reveal">
+      <span class="block text-6xl sm:text-7xl md:text-8xl lg:text-[90px]">CONSTRUIMOS</span>
+      <span class="block text-6xl sm:text-7xl md:text-8xl lg:text-[90px]">LO QUE OTROS</span>
+      <span class="block text-6xl sm:text-7xl md:text-8xl lg:text-[90px] text-idm-red">
+        NO SE ATREVEN
+      </span>
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="font-inter text-idm-text-light text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed reveal reveal-delay-1">
+      Metalmecánica industrial, construcción civil y topografía especializada.
+      Calidad garantizada en cada proyecto.
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row gap-4 mb-16 reveal reveal-delay-2">
+      <a
+        href="#servicios"
+        class="inline-flex items-center justify-center bg-idm-red hover:bg-idm-red-dark text-white font-rajdhani font-semibold text-base tracking-wider uppercase px-8 py-4 transition-all duration-200 hover:scale-[1.02]"
+      >
+        Ver Nuestros Servicios
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+      <a
+        href="#contacto"
+        class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-idm-dark font-rajdhani font-semibold text-base tracking-wider uppercase px-8 py-4 transition-all duration-200"
+      >
+        Contactar Ahora
+      </a>
+    </div>
+
+    <!-- Stats row -->
+    <div class="flex flex-col sm:flex-row gap-8 sm:gap-12 reveal reveal-delay-3">
+      {stats.map((stat) => (
+        <div class="flex flex-col">
+          <span
+            class="font-rajdhani font-bold text-4xl text-idm-red leading-none"
+            data-counter={stat.value}
+          >
+            {stat.value}
+          </span>
+          <span class="font-inter text-sm text-idm-text-muted uppercase tracking-wider mt-1">
+            {stat.label}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Red diagonal accent -->
+  <div
+    class="absolute bottom-0 left-0 w-32 h-1 bg-idm-red z-20"
+    style="transform-origin: left; transform: rotate(-45deg) translateY(-300%);"
+    aria-hidden="true"
+  ></div>
+</section>
+
+<script>
+  const counters = document.querySelectorAll<HTMLElement>('[data-counter]');
+
+  const runCounter = (el: HTMLElement) => {
+    const raw = el.dataset.counter!;
+    const prefix = raw.startsWith('+') ? '+' : '';
+    const suffix = raw.endsWith('%') ? '%' : '';
+    const target = parseInt(raw.replace(/[^0-9]/g, ''), 10);
+    const duration = 1400;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - elapsed, 3);
+      el.textContent = prefix + Math.round(eased * target) + suffix;
+      if (elapsed < 1) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          runCounter(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  counters.forEach((el) => observer.observe(el));
+</script>

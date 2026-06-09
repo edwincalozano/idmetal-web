@@ -1,0 +1,96 @@
+---
+const projects = [
+  {
+    name: 'Cerchas metálicas — Proyecto Riego Tecnificado San Antonio',
+    category: 'Metalmecánica',
+    badge: '#E8473F',
+    img: 'src/img/M01.png',
+    alt: 'Cerchas metálicas',
+  },
+  {
+    name: 'Cerco perimetral metálico y contrucción de reservorio de agua en Cutervo',
+    category: 'Metalmecánica y Construcción',
+    badge: '#E8473F',
+    img: 'src/img/M02.jpeg',
+    alt: 'Reservorios de agua',
+  },
+  {
+    name: 'Pase aéreo longitud 80m — sector Hualango',
+    category: 'Metalmecánica',
+    badge: '#E8473F',
+    img: 'src/img/M03.jpeg',
+    alt: 'Pase aéreo',
+  },
+  {
+    name: 'Construcción de edificio  — Prolongación Ayacucho, Cajamarca',
+    category: 'Construcción',
+    badge: '#F5A623',
+    img: 'src/img/M04.png',
+    alt: 'Edificio en construcción',
+  },
+  {
+    name: 'Edificio de 6 pisos — Av. Héroes del Cenepa cuadra 01, Cajamarca',
+    category: 'Construcción',
+    badge: '#F5A623',
+    img: 'src/img/M05.png',
+    alt: 'Edificio en construcción',
+  },
+  {
+    name: 'Levantamiento LIDAR — Proyecto IPD Cusco',
+    category: 'Topografía',
+    badge: '#9A9490',
+    img: 'src/img/M06.png',
+    alt: 'IPD Cusco',
+  },
+];
+---
+
+<section id="proyectos" class="bg-idm-light-bg py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-14 reveal">
+      <span class="font-inter text-idm-red text-xs font-semibold tracking-[0.25em] uppercase">
+        Portafolio
+      </span>
+      <h2 class="font-rajdhani font-bold text-idm-dark text-4xl sm:text-5xl mt-2">
+        Proyectos que nos <span class="text-idm-red">representan</span>
+      </h2>
+      <p class="font-inter text-idm-gray mt-4 max-w-xl mx-auto text-base">
+        Cada obra es testimonio de nuestra precisión y compromiso. <strong>LO HACEMOS MEJOR.</strong>
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {projects.map((project, i) => (
+        <div class={`reveal reveal-delay-${Math.min(i + 1, 4)} group relative overflow-hidden bg-idm-dark aspect-[4/3]`}>
+          <img
+            src={project.img}
+            alt={project.alt}
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
+          />
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300"></div>
+
+          <!-- Badge -->
+          <span
+            class="absolute top-4 right-4 font-inter text-white text-xs font-semibold tracking-wider uppercase px-3 py-1"
+            style={`background: ${project.badge}`}
+          >
+            {project.category}
+          </span>
+
+          <!-- Name (appears on hover) -->
+          <div class="absolute bottom-0 left-0 right-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <h3 class="font-rajdhani font-bold text-white text-lg leading-tight">
+              {project.name}
+            </h3>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+  </div>
+</section>

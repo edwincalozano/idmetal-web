@@ -1,0 +1,129 @@
+---
+import Metalmecanica from './Metalmecanica.astro';
+import Construccion from './Construccion.astro';
+import Topografia from './Topografia.astro';
+
+const tabs = [
+  { id: 'metalmecanica', label: 'Metalmecánica Industrial', badge: '#E8473F' },
+  { id: 'construccion',  label: 'Construcción Civil',       badge: '#F5A623' },
+  { id: 'topografia',    label: 'Topografía Especializada', badge: '#9A9490' },
+];
+---
+
+<section id="servicios" class="bg-idm-bg py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-12 reveal">
+      <span class="font-inter text-idm-red text-xs font-semibold tracking-[0.25em] uppercase">
+        Nuestras Especialidades
+      </span>
+      <h2 class="font-rajdhani font-bold text-white text-4xl sm:text-5xl mt-2">
+        Servicios que <span class="text-idm-red">construyen futuro</span>
+      </h2>
+      <p class="font-inter text-idm-text-muted mt-4 max-w-xl mx-auto text-base">
+        Tres especialidades, un solo compromiso: <strong class="text-idm-text-light">LO HACEMOS MEJOR.</strong>
+      </p>
+    </div>
+
+    <!-- Tab buttons -->
+    <div class="flex flex-col sm:flex-row justify-center gap-1 mb-10 reveal" role="tablist" aria-label="Especialidades">
+      {tabs.map((tab, i) => (
+        <button
+          role="tab"
+          id={`tab-${tab.id}`}
+          aria-controls={`panel-${tab.id}`}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          class={`service-tab font-rajdhani font-semibold text-sm tracking-wider uppercase px-6 py-3 transition-all duration-200 border-b-2 sm:border-b-0 sm:border-l-2 ${
+            i === 0
+              ? 'tab-active'
+              : 'border-transparent text-idm-text-muted hover:text-white'
+          }`}
+          data-tab={tab.id}
+          style={i === 0 ? `border-color: ${tab.badge}; color: white;` : ''}
+          data-badge={tab.badge}
+        >
+          <span
+            class="inline-block w-2 h-2 rounded-full mr-2"
+            style={`background: ${tab.badge}`}
+            aria-hidden="true"
+          ></span>
+          {tab.label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Tab panels -->
+    <div>
+      <div
+        id="panel-metalmecanica"
+        role="tabpanel"
+        aria-labelledby="tab-metalmecanica"
+        class="tab-panel"
+      >
+        <Metalmecanica />
+      </div>
+      <div
+        id="panel-construccion"
+        role="tabpanel"
+        aria-labelledby="tab-construccion"
+        class="tab-panel hidden"
+      >
+        <Construccion />
+      </div>
+      <div
+        id="panel-topografia"
+        role="tabpanel"
+        aria-labelledby="tab-topografia"
+        class="tab-panel hidden"
+      >
+        <Topografia />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.service-tab');
+  const panels  = document.querySelectorAll<HTMLElement>('.tab-panel');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab!;
+      const badge  = btn.dataset.badge!;
+
+      // Update buttons
+      buttons.forEach((b) => {
+        b.setAttribute('aria-selected', 'false');
+        b.style.borderColor = 'transparent';
+        b.style.color = '';
+        b.classList.remove('tab-active');
+        b.classList.add('text-idm-text-muted');
+      });
+
+      btn.setAttribute('aria-selected', 'true');
+      btn.style.borderColor = badge;
+      btn.style.color = 'white';
+      btn.classList.add('tab-active');
+      btn.classList.remove('text-idm-text-muted');
+
+      // Update panels with fade
+      panels.forEach((panel) => {
+        if (panel.id === `panel-${target}`) {
+          panel.classList.remove('hidden');
+          panel.style.animation = 'none';
+          panel.offsetHeight; // reflow
+          panel.style.animation = 'fadeIn 0.3s ease';
+        } else {
+          panel.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>

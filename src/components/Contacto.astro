@@ -1,0 +1,253 @@
+---
+const contactInfo = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+    label: 'Email',
+    value: 'info@idmetal.pe',
+    note: null,
+    href: 'mailto:info@idmetal.pe',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.55 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+    label: 'WhatsApp',
+    value: '+51 942 253 502',
+    note: null,
+    href: 'https://wa.me/51942253502',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+    label: 'Ubicación',
+    value: 'Cajamarca, Perú',
+    note: null,
+    href: null,
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    label: 'Horario',
+    value: 'Lun – Vie: 8:00 am – 6:00 pm',
+    note: null,
+    href: null,
+  },
+];
+---
+
+<section id="contacto" class="bg-idm-bg py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-14 reveal">
+      <span class="font-inter text-idm-red text-xs font-semibold tracking-[0.25em] uppercase">
+        Contáctanos
+      </span>
+      <h2 class="font-rajdhani font-bold text-white text-4xl sm:text-5xl mt-2">
+        ¿Listo para tu <span class="text-idm-red">próximo proyecto?</span>
+      </h2>
+      <p class="font-inter text-idm-text-muted mt-4 text-base">
+        Contáctanos y recibe una cotización sin costo en menos de 24 horas.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+      <!-- Info column -->
+      <div class="reveal space-y-6">
+        {contactInfo.map((info) => (
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-idm-red/10 border border-idm-red/20 flex items-center justify-center flex-shrink-0 text-idm-red" set:html={info.icon} />
+            <div>
+              <p class="font-inter text-idm-text-muted text-xs uppercase tracking-widest mb-0.5">{info.label}</p>
+              {info.href ? (
+                <a href={info.href} class="font-inter text-idm-text-light font-medium hover:text-idm-red transition-colors">
+                  {info.value}
+                </a>
+              ) : (
+                <p class="font-inter text-idm-text-light font-medium">{info.value}</p>
+              )}
+              {info.note && (
+                <p class="font-inter text-idm-text-muted text-xs mt-0.5">{info.note}</p>
+              )}
+            </div>
+          </div>
+        ))}
+
+        <div class="mt-8 p-6 border border-idm-red/20 bg-idm-red/5">
+          <p class="font-rajdhani font-bold text-white text-xl mb-2">LO HACEMOS MEJOR</p>
+          <p class="font-inter text-idm-text-muted text-sm leading-relaxed">
+            Desde Cajamarca construimos lo que otros no se atreven. Confía en ingenieros
+            comprometidos con tu proyecto.
+          </p>
+        </div>
+      </div>
+
+      <!-- Form column -->
+      <div class="reveal reveal-delay-2">
+        <form
+          id="contact-form"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          class="space-y-4"
+          novalidate
+        >
+          <input type="hidden" name="access_key" value="4c53a408-c6f7-46b3-b657-8c9e17945ef5" />
+          <input type="hidden" name="_subject" value="Nueva solicitud de cotización — IDMETAL" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex flex-col gap-1">
+              <label for="nombre" class="font-inter text-idm-text-muted text-xs uppercase tracking-widest">
+                Nombre completo <span class="text-idm-red" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="nombre"
+                name="name"
+                type="text"
+                required
+                class="form-input"
+                placeholder="Juan Pérez"
+              />
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="empresa" class="font-inter text-idm-text-muted text-xs uppercase tracking-widest">
+                Empresa
+              </label>
+              <input
+                id="empresa"
+                name="empresa"
+                type="text"
+                class="form-input"
+                placeholder="Mi Empresa SAC"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex flex-col gap-1">
+              <label for="email" class="font-inter text-idm-text-muted text-xs uppercase tracking-widest">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                class="form-input"
+                placeholder="correo@empresa.com"
+              />
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="telefono" class="font-inter text-idm-text-muted text-xs uppercase tracking-widest">
+                Teléfono <span class="text-idm-red" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="telefono"
+                name="telefono"
+                type="tel"
+                required
+                class="form-input"
+                placeholder="+51 999 999 999"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="servicio" class="font-inter text-idm-text-muted text-xs uppercase tracking-widest">
+              Tipo de servicio <span class="text-idm-red" aria-hidden="true">*</span>
+            </label>
+            <select id="servicio" name="servicio" required class="form-input">
+              <option value="">Selecciona una especialidad</option>
+              <option value="metalmecanica">Metalmecánica Industrial</option>
+              <option value="construccion">Construcción Civil</option>
+              <option value="topografia">Topografía Especializada</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="descripcion" class="font-inter text-idm-text-muted text-xs uppercase tracking-widest">
+              Descripción del proyecto <span class="text-idm-red" aria-hidden="true">*</span>
+            </label>
+            <textarea
+              id="descripcion"
+              name="message"
+              required
+              rows="4"
+              class="form-input resize-none"
+              placeholder="Cuéntanos brevemente sobre tu proyecto..."
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-idm-red hover:bg-idm-red-dark text-white font-rajdhani font-bold text-base tracking-wider uppercase py-4 transition-all duration-200 hover:scale-[1.01] flex items-center justify-center gap-2"
+          >
+            Enviar Solicitud
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+
+          <!-- Success message -->
+          <div id="form-success" class="hidden bg-green-900/30 border border-green-500/30 text-green-400 font-inter text-sm p-4 text-center">
+            ✓ Solicitud enviada. Te contactaremos en menos de 24 horas.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .form-input {
+    background: var(--idm-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--idm-text-light);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .form-input::placeholder {
+    color: var(--idm-text-muted);
+  }
+
+  .form-input:focus {
+    border-color: var(--idm-red);
+  }
+
+  .form-input option {
+    background: var(--idm-surface);
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successMsg = document.getElementById('form-success')!;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      const json = await res.json();
+
+      if (json.success) {
+        form.reset();
+        successMsg.classList.remove('hidden');
+        setTimeout(() => successMsg.classList.add('hidden'), 6000);
+      }
+    } catch {
+      form.submit();
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Enviar Solicitud <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>';
+    }
+  });
+</script>
