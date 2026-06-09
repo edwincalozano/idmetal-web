@@ -49,7 +49,7 @@ Each component is a self-contained `.astro` file with its own Tailwind classes a
 
 Section anchor IDs used by nav links: `#inicio` (Hero), `#servicios` (Servicios), `#proyectos` (Proyectos), `#contacto` (Contacto). The nav also includes a `#nosotros` link that has no matching section in the current page — it is a dead link.
 
-Local images live in `src/img/`. Use them with a root-relative path (e.g., `/src/img/fondo.png`). Unsplash URLs are used for project/testimonial imagery where no local asset exists.
+Local images live in both `src/img/` and `public/img/`. Always reference them via `/img/filename` (public path) in component `src` attributes — never `src/img/filename`. Unsplash URLs are used for testimonial imagery where no local asset exists.
 
 ### Color system — dual registration
 
@@ -76,6 +76,14 @@ Both approaches are already used across components. Never add raw hex values lik
 
 `Contacto.astro` submits to Web3Forms via `fetch`. On success it shows a confirmation div for 6 seconds, then hides it. On network failure it silently falls back to native form submission. The access key and honeypot (`botcheck`) field are already configured.
 
+### WhatsApp floating button
+
+`Layout.astro` includes a fixed `.whatsapp-fab` button (bottom-right, `z-index: 9999`) that links to `https://wa.me/51942253502`. It uses the official WhatsApp SVG logo on a `#25D366` green circle. This button is global — it appears on every page regardless of scroll position.
+
+### WhatsApp contact item
+
+In `Contacto.astro`, the WhatsApp entry in `contactInfo` has `whatsapp: true`. This flag switches the icon container from red (`bg-idm-red/10 border-idm-red/20`) to green (`bg-green-500/10 border-green-500/20`), and the SVG uses hardcoded `fill="#25D366"` instead of `currentColor`.
+
 ---
 
 ## Brand Constraints
@@ -99,7 +107,7 @@ These rules are strict — do not deviate.
 | `idm-text-muted` | `#9A9490` | Muted labels, captions |
 | `idm-white`      | `#FFFFFF` | CSS var only — not in Tailwind config; use `text-white` / `bg-white` instead |
 
-- No blues or greens anywhere in the UI.
+- No blues or greens anywhere in the UI — **exception:** WhatsApp elements use `#25D366` (official WhatsApp green) for the floating FAB button and the contact icon in `Contacto.astro`.
 - Red and yellow never appear as co-equal protagonists in the same section (together only in the logo).
 
 ### Typography
